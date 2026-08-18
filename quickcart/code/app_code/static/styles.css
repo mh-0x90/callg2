@@ -1,0 +1,25 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #17202a;
+  background: #f5f7f8;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.shell { width: min(900px, 92%); margin: 0 auto; padding: 56px 0; }
+.eyebrow { margin: 0; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+h1 { margin: 8px 0 28px; font-size: clamp(2rem, 5vw, 3.5rem); }
+.search label { display: block; margin-bottom: 8px; font-weight: 600; }
+.search div { display: flex; gap: 8px; }
+input, button { font: inherit; padding: 10px 12px; border-radius: 8px; border: 1px solid #aeb6bf; }
+input { flex: 1; min-width: 0; background: #fff; }
+button { cursor: pointer; background: #17202a; color: #fff; border-color: #17202a; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-top: 30px; }
+.card { background: #fff; border: 1px solid #dfe4e7; border-radius: 12px; padding: 20px; }
+.card h2 { margin-top: 0; }
+.card strong { display: inline-block; margin-top: 8px; }
+.lab-form { display: grid; gap: 10px; margin: 28px 0; }
+.lab-form label { font-weight: 600; }
+textarea { width: 100%; resize: vertical; font: 0.95rem ui-monospace, monospace; padding: 12px; border: 1px solid #aeb6bf; border-radius: 8px; }
+.output { margin: 20px 0; padding: 16px; background: #fff; border: 1px solid #dfe4e7; border-radius: 12px; }
+.output h2 { margin-top: 0; font-size: 1rem; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; margin-bottom: 0; }

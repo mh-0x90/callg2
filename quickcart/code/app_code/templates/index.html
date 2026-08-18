@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuickCart</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <p class="eyebrow">QuickCart</p>
+      <h1>Useful things, kept simple.</h1>
+      <form method="get" action="{{ url_for('home') }}" class="search">
+        <label for="q">Search products</label>
+        <div>
+          <input id="q" name="q" type="search" maxlength="80" value="{{ query }}" placeholder="Try: mug">
+          <button type="submit">Search</button>
+        </div>
+      </form>
+    </header>
+
+    <section class="grid" aria-label="Products">
+      {% for product in products %}
+        <article class="card">
+          <h2>{{ product.name }}</h2>
+          <p>{{ product.description }}</p>
+          <strong>€{{ product.price }}</strong>
+        </article>
+      {% else %}
+        <p>No products matched “{{ query }}”.</p>
+      {% endfor %}
+    </section>
+
+    <p><a href="{{ url_for('receipt') }}">Preview receipt message</a></p>
+  </main>
+</body>
+</html>

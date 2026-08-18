@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Mission {{ mission }}</title></head>
+<body>
+  <h1>Mission {{ mission }}</h1>
+  <p>Access: {{ mode }}</p>
+  {% if username %}<p>Agent: {{ username }}</p>{% endif %}
+  {% if browser_agent %}<p>Browser agent received by the backend: {{ browser_agent }}</p>{% endif %}
+
+  {% if mission == "One" %}
+    <p id="preference">Loading local demo preference…</p>
+    <script>
+      const preference = localStorage.getItem("missionPreference") || "not set";
+      document.getElementById("preference").textContent = `Local demo preference: ${preference}`;
+    </script>
+  {% endif %}
+
+  {% if mission == "Two" %}
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <label>Submit Agent Note: <input name="note" required></label>
+      <button type="submit">Save Note</button>
+    </form>
+    {% if note_saved %}
+      <p style="color: green;">Note appended to agent_notes.html!</p>
+    {% endif %}
+  {% endif %}
+
+  {% if mission == "Four" %}
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <label>Broadcast Field Intel: <input name="intel" required></label>
+      <button type="submit">Send Intel</button>
+    </form>
+    {% if intel_saved %}
+      <p style="color: green;">Field intel archived to intel_vault.log!</p>
+    {% endif %}
+  {% endif %}
+
+  {% if mission == "Five" %}
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <label>Target Agent: <input name="target_agent" required></label>
+      <label>Credits: <input name="credits" type="number" required></label>
+      <button type="submit">Transfer Credits</button>
+    </form>
+    {% if transfer_complete %}
+      <p style="color: green;">Credit transfer executed successfully!</p>
+    {% endif %}
+    {% if error %}
+      <p style="color: red;">{{ error }}</p>
+    {% endif %}
+  {% endif %}
+
+  {% if websocket_url %}
+    <button id="poll">Poll mission status</button>
+    <pre id="status"></pre>
+    <script>
+      const status = document.getElementById("status");
+      const socket = new WebSocket(`${location.protocol === "https:" ? "wss" : "ws"}://${location.host}{{ websocket_url }}`);
+      socket.onmessage = ({ data }) => { status.textContent = data; };
+      document.getElementById("poll").onclick = () => socket.send("status");
+    </script>
+  {% endif %}
+</body>
+</html>

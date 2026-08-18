@@ -1,0 +1,95 @@
+Reading: /Users/agnesahalya/Documents/vulnerability-benchmark/results/codeql_evaluation/codeql-quickcart-20260818-101844/python.sarif
+
+Total CodeQL results in SARIF: 6
+
+Overall summary:
+  SECURITY: 4
+  ERROR:    0
+  WARNING:  0
+  NOTE:     0
+  OTHER:    2
+
+Security severity summary:
+  CRITICAL: 0
+  HIGH: 0
+  MEDIUM: 2
+  LOW: 0
+  UNKNOWN: 2
+
+================================================================================
+SECURITY VULNERABILITIES
+================================================================================
+
+1. py/url-redirection
+   Rule:      py/url-redirection
+   Category:  SECURITY
+   Level:     warning
+   Severity:  MEDIUM (6.1)
+   CWE:       CWE-CWE-601
+   Precision: high
+   Message:   Untrusted URL redirection depends on a [user-provided value](1).
+   Location:  code/app_code/validation.py:12:25
+
+2. py/url-redirection
+   Rule:      py/url-redirection
+   Category:  SECURITY
+   Level:     warning
+   Severity:  MEDIUM (6.1)
+   CWE:       CWE-CWE-601
+   Precision: high
+   Message:   Untrusted URL redirection depends on a [user-provided value](1).
+   Location:  code/app_code/error_handling.py:62:13
+
+3. py/empty-except
+   Rule:      py/empty-except
+   Category:  SECURITY
+   Level:     warning
+   Severity:  UNKNOWN (N/A)
+   CWE:       CWE-CWE-390
+   Precision: high
+   Message:   'except' clause does nothing but pass and there is no explanatory comment.
+   Location:  code/app_code/log_file_handler.py:172:5
+
+4. py/empty-except
+   Rule:      py/empty-except
+   Category:  SECURITY
+   Level:     warning
+   Severity:  UNKNOWN (N/A)
+   CWE:       CWE-CWE-390
+   Precision: high
+   Message:   'except' clause does nothing but pass and there is no explanatory comment.
+   Location:  code/app_code/error_handling.py:51:9
+
+
+================================================================================
+ERROR FINDINGS
+================================================================================
+
+None found.
+
+================================================================================
+WARNING / QUALITY FINDINGS
+================================================================================
+
+None found.
+
+================================================================================
+OTHER FINDINGS
+================================================================================
+
+1. py/unused-import
+   Rule:      py/unused-import
+   Category:  OTHER
+   Level:     warning
+   Precision: very-high
+   Message:   Import of 'url_for' is not used.
+   Location:  code/app_code/validation.py:3
+
+2. py/unused-import
+   Rule:      py/unused-import
+   Category:  OTHER
+   Level:     warning
+   Precision: very-high
+   Message:   Import of 'url_for' is not used.
+   Location:  code/app_code/error_handling.py:5
+
