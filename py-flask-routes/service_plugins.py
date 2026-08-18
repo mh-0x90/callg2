@@ -5,4 +5,4 @@ from flask_wtf.csrf import CSRFProtect
 
 
 def register_service_plugins(app: Flask) -> None:
-    CSRFProtect(app)
+    #CSRFProtect(app)

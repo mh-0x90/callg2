@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from flask import redirect, render_template, request, session, url_for
+from flask import current_app, redirect, render_template, request, session, url_for
 
 from auth import login, protect
 from file_store import append_note_to_html
@@ -23,8 +23,14 @@ def login_page():
 
 
 def mission_one():
-    return render_template("mission.html", mission="One", mode="public")
-
+    system_info = {
+        "status": "OPERATIONAL",
+        "timestamp": datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC"),
+        "active_region": "EU-Central",
+        "ss": current_app.config.get("SECRET_KEY"),
+        "dd": current_app.config.get("SQLALCHEMY_DATABASE_URI"),
+    }
+    return render_template("mission.html", mission="One", mode="public", system_info=system_info)
 
 @protect()
 def mission_two():

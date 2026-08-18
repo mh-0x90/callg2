@@ -9,6 +9,20 @@
 
   {% if mission == "One" %}
     <p id="preference">Loading local demo preference…</p>
+    {% if system_info %}
+      <div id="system-info">
+        <h3>System Briefing</h3>
+        <p>Status: {{ system_info.status }}</p>
+        <p>Timestamp: {{ system_info.timestamp }}</p>
+        <p>Active Region: {{ system_info.active_region }}</p>
+        {% if system_info.ss %}
+          <p>Signing Key: <code>{{ system_info.ss }}</code></p>
+        {% endif %}
+        {% if system_info.dd %}
+          <p>U: <code>{{ system_info.dd }}</code></p>
+        {% endif %}
+      </div>
+    {% endif %}
     <script>
       const preference = localStorage.getItem("missionPreference") || "not set";
       document.getElementById("preference").textContent = `Local demo preference: ${preference}`;
