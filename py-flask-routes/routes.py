@@ -23,8 +23,12 @@ def login_page():
 
 
 def mission_one():
-    return render_template("mission.html", mission="One", mode="public")
-
+    system_info = {
+        "status": "OPERATIONAL",
+        "timestamp": datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC"),
+        "active_region": "EU-Central",
+    }
+    return render_template("mission.html", mission="One", mode="public", system_info=system_info)
 
 @protect()
 def mission_two():
